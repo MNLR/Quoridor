@@ -4,4 +4,7 @@ Implementation of an AI that plays the game [Quoridor](https://boardgamegeek.com
 
 The game uses a simple graphics interface built using [Simple DirectMedia Layer](https://www.libsdl.org).
 
-[Work in Progress] 
+[Work in Progress]
+
+### Compilation instructions
+The Makefile is ready to be executed using [GNU MAKE](https://www.gnu.org/software/make/), simply download the files and type `make` in the main directory.
