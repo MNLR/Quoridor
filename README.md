@@ -32,6 +32,37 @@ Watch [this](https://www.youtube.com/watch?v=lOCWJw61M6A) video if it is still u
 
 At start you will be prompted to input the dificulty. Input 1 for easy, 2 for medium and 3 for hard. Note that higher difficulties are an option, see next section. Then the board will open, you control the beige pawn and move first.
 
+Controls:
+
+* Use `arrow keys` to move the pawn:
+
+   `←` : move your pawn left
+
+   `→` : move your pawn right
+
+   `↑` : move your pawn up
+
+   `↓` : move your pawn down
+
+* Press `p`  to start placing a wall. The wall will appear on the screen, then use:
+
+   `←` : move your pawn left
+
+   `→` : move your pawn right
+
+   `↑` : move your pawn up
+
+   `↓` : move your pawn down
+   
+   `r` : rotate the wall
+  
+   `Enter` : place the wall
+   
+   `Esc` : Cancel wall placing
+   
+   Note that if you try to place a wall where you would block every path to your enemy's or your own goal, pressing `Enter` won't work, and that if you try to place a wall and there are none left `p` won't work either.
+
+
 
 
 ### A Note on Difficulty
