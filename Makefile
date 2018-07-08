@@ -14,7 +14,7 @@ DP = inc.h
 ###
 ##
 
-MAIN = $(wildcard *main.cpp) 
+MAIN = $(wildcard *main.cpp)
 MAINo = $(patsubst %.cpp,%.o,$(MAIN))
 CLDIR = $(EX) $(OB) *main.o *~ *save 
 
@@ -23,7 +23,8 @@ CLDIR = $(EX) $(OB) *main.o *~ *save
 ##
 
 C = g++
-CF = -w -lSDL2 -lSDL_image -Wall -Wextra -I. -std=c++11 -fpermissive
+CF = -w -Wall -Wextra -std=c++11 -fpermissive
+LIBS = -I. -lSDL2 -lSDL2_image
 
 ##
 ### Rules
@@ -32,7 +33,7 @@ CF = -w -lSDL2 -lSDL_image -Wall -Wextra -I. -std=c++11 -fpermissive
 all: $(EX)
 
 $(EX): $(MAINo) $(OB)
-	$(C) $(CF) -o $@ $^
+	$(C) $(CF) -o $@ $^ $(LIBS)
 
 $(MAINo): $(MAIN) $(DP) $(OB)
 	$(C) $(CF) -c -o $@ $<
