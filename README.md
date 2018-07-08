@@ -24,7 +24,9 @@ The rules of Quoridor are straightforward:
 4. Pawns move in four directions: up, down, left, or right. A pawn cannot move if there is a wall blocking that direction. Note that they block both players' movement.
 5. Once placed walls cannot be moved. 
 7. You can *never* completely wall in an opponent. There must always remain one path to the goal, i.e. top or bottom line, for each player.
-8. When two pawns face each other on neighbouring squares which are not separated by a wall, the player whose turn it is can jump the opponent’s pawn (and place himself behind him), thus advancing an extra square. If there is a fence behind the said pawn, the player can place his pawn to the left or the right of the other pawn 
+8. When two pawns face each other on neighbouring squares which are not separated by a wall, the player whose turn it is can jump the opponent’s pawn (and place himself behind him), thus advancing an extra square. If there is a fence behind the said pawn, the player can place his pawn to the left or the right of the other pawn.
+
+Watch [this](https://www.youtube.com/watch?v=lOCWJw61M6A) video if it is still unclear.
 
 ### Instructions
 
