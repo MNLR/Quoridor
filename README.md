@@ -64,7 +64,10 @@ Controls:
 
 
 
-
 ### A Note on Difficulty
 
 Although 3 levels are sugested, you may input any positive integer when prompted to input the difficulty. This number is the depth of the minimax search, meaning the game will become harder, with the AI spending more and more time to make a move. A difficulty higher than 6 is likely to become unplayable even with a high end processor.
+
+### Final Note and Contributing: 
+
+This was a personal project in which I am currently not working on. The objective was to make the computer to be able to play a moderately complex game and be competent at it, and also creating a playable interface. This provides a basis for further improvements, in particular and not restricted to 1) Using heuristic search approaches for exploring the tree in the minimax algorithm, thus making the AI stochastic, 2) using Machine Learning techniques for more complex AIs or 3) testing different evaluation measures.
