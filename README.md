@@ -13,6 +13,8 @@ For Linux users refer to your distribution maintainer. For instance, for Debian 
 
 The Makefile is ready to be executed using [GNU Make](https://www.gnu.org/software/make/). Quickest way to compile is by downloading the files into a directory, cding into it and typing `make` from the terminal. By default `make` executes the rule `ALL` from the Makefile, which compiles the objects and then links them into the executable. Other rules are an option, but should be used with care, refer to the [GNU Make Manual](https://www.gnu.org/software/make/manual/).
 
+Under Windows systems you may either use your preferred IDE or use the Makefile itself, something you can do, e.g. by employing [GNUWin's Make](https://sourceforge.net/projects/gnuwin32/?source=typ_redirect) or through Visual Studio.
+
 ### How to Play
 
 The rules of Quoridor are straightforward:
