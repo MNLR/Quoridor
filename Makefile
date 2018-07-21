@@ -4,7 +4,7 @@
 ### Executable, Objects and Dependencies
 ##
 
-EX = juego
+EX = Quoridor
 OB = ciclo.o arriba.o abajo.o derecha.o izquierda.o pared.o paredc.o\
  imprimir.o e1_min1.o e1_min2.o minimax.o gimprimir.o gimprimiraux.o \
  init.o loadMedia.o loadTexture.o close.o    #Excl. main.o - It has his own rule.
