@@ -1,12 +1,5 @@
 #include <inc.h>
 
-
-
-//
-//
-//    
-//    
-
 int e1Min1(nodo);
 int e1Min2(nodo);
 bool pawnDown(bool, nodo&);

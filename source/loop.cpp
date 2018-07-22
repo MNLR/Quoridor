@@ -1,7 +1,5 @@
 #include <inc.h>
 
-int e1Min1(nodo);
-int e1Min2(nodo);
 int minimax(nodo, int, bool, int, int);
 
 void print(nodo);   // Prints the board in terminal
