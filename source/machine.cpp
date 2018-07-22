@@ -1,25 +1,25 @@
 #include <inc.h>
 
-bool arriba(short);
-bool abajo(short);
-bool izquierda(short);
-bool derecha(short);
+bool pawnUp(short);
+bool pawnDown(short);
+bool pawnLeft(short);
+bool pawnRight(short);
 
-void maquina(mat2 &mov){
+void machine(mat2 &mov){
 
  if (mov[0][0]<0){
 	switch(mov[0][0]){
 		case -1:
-			arriba(2);
+			pawnUp(2);
 			break;
  		case -2:
-			abajo(2);
+			pawnDown(2);
 			break;
 		case -3:
-			izquierda(2);
+			pawnLeft(2);
 			break;
 		case -4:
-			derecha(2);
+			pawnRight(2);
 			break;
 	}
  }

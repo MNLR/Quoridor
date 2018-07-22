@@ -8,13 +8,13 @@
 //    NO LO HACEN. REVISAR DEVOLUCIÓN DE NODOS Y MODIFICACIÓN PASO POR VALOR Y REFERENCIA
 //    PARECEN ESTAR ARREGLADOS. MUCHO CUIDADO CON MODIFICAR NODO IN Y CON EL PASO POR REFERENCIA. HAY QUE BUSCAR UNA FORMA DE DEVOLVER LA SOLUCIÓN.
 
-int e1_min1(nodo);
-int e1_min2(nodo);
-bool abajo(bool, nodo&);
-bool arriba(bool, nodo&);
-bool derecha(bool, nodo&);
-bool izquierda(bool, nodo&);
-void imprimir(nodo);
+int e1Min1(nodo);
+int e1Min2(nodo);
+bool pawnDown(bool, nodo&);
+bool pawnUp(bool, nodo&);
+bool pawnRight(bool, nodo&);
+bool pawnLeft(bool, nodo&);
+void print(nodo);
 
 nodo siguiente2(nodo padre,int sucesor){
  
@@ -23,7 +23,7 @@ nodo siguiente2(nodo padre,int sucesor){
 
  	switch(sucesor){
 		case 1:
- 			if (abajo(false, padre)){
+ 			if (pawnDown(false, padre)){
 				padre.tablero[2][2]=1;
 			}
 			else{
@@ -31,7 +31,7 @@ nodo siguiente2(nodo padre,int sucesor){
 			}
 			break;
                 case 2:
-			if (arriba(false, padre)){
+			if (pawnUp(false, padre)){
 			        padre.tablero[2][2]=2;
 			}
 			else{
@@ -39,7 +39,7 @@ nodo siguiente2(nodo padre,int sucesor){
 			}
                 	break;
                 case 3:
-                        if (izquierda(false, padre)){
+                        if (pawnLeft(false, padre)){
                                 padre.tablero[2][2]=3;
                         }
 			else{
@@ -48,7 +48,7 @@ nodo siguiente2(nodo padre,int sucesor){
                 	break;
                 case 4:
 
-                        if (derecha(false, padre)){
+                        if (pawnRight(false, padre)){
  	                       padre.tablero[2][2]=4;
         		}
 			else{
@@ -71,7 +71,7 @@ nodo siguiente1(nodo padre, int sucesor){
  if (sucesor<=4){
  	switch(sucesor){
 		case 1:
- 			if (arriba(true, padre)){
+ 			if (pawnUp(true, padre)){
 				padre.tablero[2][2]=1;
 			}
 			else{
@@ -79,7 +79,7 @@ nodo siguiente1(nodo padre, int sucesor){
 			}
 			break;
                 case 2:
-                        if (abajo(true, padre)){
+                        if (pawnDown(true, padre)){
                                 padre.tablero[2][2]=2;
 	                }
 			else{
@@ -87,7 +87,7 @@ nodo siguiente1(nodo padre, int sucesor){
 			}
                 	break;
                 case 3:
-                        if (izquierda(true, padre)){
+                        if (pawnLeft(true, padre)){
                                 padre.tablero[2][2]=3;
 
 		           }
@@ -97,7 +97,7 @@ nodo siguiente1(nodo padre, int sucesor){
                 	break;
                 case 4:
  
-                        if (derecha(true, padre)){
+                        if (pawnRight(true, padre)){
                                 padre.tablero[2][2]=4;
 			 }
                         else{
@@ -128,10 +128,10 @@ int minimax(nodo in, int n, bool mmax, int alfa, int beta){
 
 
  if (n==0){
-	cout << "Minimax ejecutándose: " << e1_min1(in)-e1_min2(in) << " , el nodo HOJA es movimiento: " << in.tablero[2][2] << " y tablero :\n";
-	imprimir(in);
+	cout << "Minimax ejecutándose: " << e1Min1(in)-e1Min2(in) << " , el nodo HOJA es movimiento: " << in.tablero[2][2] << " y tablero :\n";
+	print(in);
 	cout << "                                             FIN NODO HOJA  n\n";
-        return e1_min1(in)-e1_min2(in);
+        return e1Min1(in)-e1Min2(in);
 
  }
  else{
@@ -141,7 +141,7 @@ int minimax(nodo in, int n, bool mmax, int alfa, int beta){
 		while(seguir){
 			paso=siguiente2(in, sucesor);
 			//cout << "               (MAX)         Imprimiendo nodo de paso: \n";
-			//imprimir(paso);
+			//print(paso);
 			//cout <<"       FIN PASO\n";
 
 			if (paso.tablero[2][2]!=-1){   // Si no se descarta el nodo.
@@ -176,7 +176,7 @@ int minimax(nodo in, int n, bool mmax, int alfa, int beta){
 		while(seguir){
                         paso=siguiente1(in, sucesor);
 			//cout << "    (MIN)   Imprimiendo nodo de paso: \n";
-                        //imprimir(paso);
+                        //print(paso);
                         //cout <<"      FIN PASO\n";
 			if (paso.tablero[2][2]!=-1){   // Si no se descarta el nodo.
 				eval=minimax(paso, n-1, true, alfa, beta);

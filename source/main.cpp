@@ -14,10 +14,10 @@ void close();					// Libera la memoria y apaga SDL
 SDL_Texture* loadTexture( std::string path );   // Carga imagen como textura
 SDL_Window* gWindow = NULL;			// Ventana a la que se renderizará
 SDL_Renderer* gRenderer = NULL;			// Renderizador de ventana
-void ciclo();
+void loop();
 
-void imprimir(nodo);
-void gimprimir(nodo);
+void print(nodo);
+void gPrint(nodo);
 
 int m;
 nodo a; // Nodo principal. Estado actual del tablero.
@@ -59,9 +59,9 @@ int main(int argc, char* args[]){
  a.p2[1]=9;
  a.d1=8;
  a.d2=7;
- a.paredes1=10;
- a.paredes2=10;
- imprimir(a);
+ a.walles1=10;
+ a.walles2=10;
+ print(a);
 
  a.tablero[a.p1[0]][a.p1[1]]=1;
  a.tablero[a.p2[0]][a.p2[1]]=1;
@@ -74,12 +74,12 @@ int main(int argc, char* args[]){
 		cout << "Failed to load media!\n";
 	}
 	else{
-		bool quit = false;	// flag ciclo principal
+		bool quit = false;	// flag loop principal
 		SDL_Event e;   		// variables manejo de eventos
                 SDL_Event t;
-		gimprimir(a);
+		gPrint(a);
 		
-		ciclo();
+		loop();
 	// Liberar recursos y cerrar SDL.
 	close();
 	return 0;

@@ -1,6 +1,6 @@
 #include <inc.h>
 
-void gimprimiraux(nodo aa){
+void gPrint(nodo aa){
  
  //Clear screen
  SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
@@ -29,22 +29,15 @@ void gimprimiraux(nodo aa){
 				}
 			}
 			else{
-				if (aa.tablero[i][j]==2){		// HUECO PARED VERTICAL OCUPADO CON PARED EN COLOCACIÓN
+				if (aa.tablero[i][j]==true){		// HUECO PARED VERTICAL OCUPADO
 					SDL_Rect fillRect = {(50+SCREEN_WIDTH/11)+(SCREEN_WIDTH/11)*j/2+25, (SCREEN_HEIGHT/11)+(SCREEN_HEIGHT/11)*(i-1)/2+34, 17, SCREEN_HEIGHT/12};
-                                        SDL_SetRenderDrawColor( gRenderer, 0x5b, 0x5b, 0x5b, 0xFF );
-                                        SDL_RenderFillRect( gRenderer, &fillRect );					
-
-					SDL_Rect outlineRect = {(50+SCREEN_WIDTH/11)+(SCREEN_WIDTH/11)*j/2+25, (SCREEN_HEIGHT/11)+(SCREEN_HEIGHT/11)*(i-1)/2+34, 17, SCREEN_HEIGHT/12};
                         		SDL_SetRenderDrawColor( gRenderer, 0x00, 0x00, 0x00, 0xFF );
-                	        	SDL_RenderDrawRect( gRenderer, &outlineRect );
-					
+                	        	SDL_RenderFillRect( gRenderer, &fillRect );
 				}
-				else{					// HUECO PARED VERTICAL OCUPADO CON PARED YA COLOCADA
-					if (aa.tablero[i][j]==1){
-						SDL_Rect fillRect = {(50+SCREEN_WIDTH/11)+(SCREEN_WIDTH/11)*j/2+25, (SCREEN_HEIGHT/11)+(SCREEN_HEIGHT/11)*(i-1)/2+34, 17, SCREEN_HEIGHT/12};
-        	               		        SDL_SetRenderDrawColor( gRenderer, 0x00, 0x00, 0x00, 0x00 );
-                	                	SDL_RenderFillRect( gRenderer, &fillRect );
-					}
+				else{					// HUECO PARED VERTICAL NO OCUPADO
+					SDL_Rect fillRect = {(50+SCREEN_WIDTH/11)+(SCREEN_WIDTH/11)*j/2+25, (SCREEN_HEIGHT/11)+(SCREEN_HEIGHT/11)*(i-1)/2+34, 17, SCREEN_HEIGHT/12};
+                       		        SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
+                                	SDL_RenderFillRect( gRenderer, &fillRect );
 				}
 			}
  		}
@@ -52,30 +45,23 @@ void gimprimiraux(nodo aa){
 	else{
 		for (j=1; j<=17 ; j++){
 			if(j%2==1){
-                        	if (aa.tablero[i][j]==2){	//HUECO PARED HORIZONTAL OCUPADO CON PARED EN COLOCACIÓN
-					SDL_Rect fillRect = {(50+SCREEN_WIDTH/11)+(SCREEN_WIDTH/11)*(j-1)/2+34, (SCREEN_HEIGHT/11)+(SCREEN_HEIGHT/11)*(i-1)/2+60, SCREEN_WIDTH/12 , 6};
-                                        SDL_SetRenderDrawColor( gRenderer, 0x5b, 0x5b, 0x5b, 0xFF );
-                                	SDL_RenderFillRect( gRenderer, &fillRect );		               		  
-
-					SDL_Rect outlineRect = {(50+SCREEN_WIDTH/11)+(SCREEN_WIDTH/11)*(j-1)/2+34, (SCREEN_HEIGHT/11)+(SCREEN_HEIGHT/11)*(i-1)/2+60, SCREEN_WIDTH/12 , 6};
-                                        SDL_SetRenderDrawColor( gRenderer, 0x00, 0x00, 0x00, 0xFF );
-                                        SDL_RenderDrawRect( gRenderer, &outlineRect );
-
+                        	if (aa.tablero[i][j]==true){	//HUECO PARED HORIZONTAL OCUPADO
+		               		  SDL_Rect fillRect = {(50+SCREEN_WIDTH/11)+(SCREEN_WIDTH/11)*(j-1)/2+34, (SCREEN_HEIGHT/11)+(SCREEN_HEIGHT/11)*(i-1)/2+60, SCREEN_WIDTH/12 , 6};
+                                          SDL_SetRenderDrawColor( gRenderer, 0x00, 0x00, 0x00, 0xFF );
+                                          SDL_RenderFillRect( gRenderer, &fillRect );
+				}
+				else{				// HUECO PARED HORIZONTAL NO OCUPADO
+					//SDL_Rect fillRect = {(50+SCREEN_WIDTH/11)+(SCREEN_WIDTH/11)*(j-1)/2+50,( SCREEN_HEIGHT/11)+ (SCREEN_HEIGHT/11)*(i-1)+20, SCREEN_HEIGHT/12, 6};
+                	               	//SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
+                                	//SDL_RenderFillRect( gRenderer, &fillRect );
 
 				}
-				else{				// HUECO PARED HORIZONTAL OCUPADO CON PARED YA COLOCADA
-					if (aa.tablero[i][j]==1){
-						SDL_Rect fillRect = {(50+SCREEN_WIDTH/11)+(SCREEN_WIDTH/11)*(j-1)/2+34, (SCREEN_HEIGHT/11)+(SCREEN_HEIGHT/11)*(i-1)/2+60, SCREEN_WIDTH/12 , 6};
-                                		SDL_SetRenderDrawColor( gRenderer, 0x00, 0x00, 0x00, 0xFF );
-                                        	SDL_RenderFillRect( gRenderer, &fillRect );
-					}
-				}
-			}		// Si no en blanco (Modeliza agujero entre paredes cruzadas)
+			}		// Si no en blanco (Modeliza agujero entre walles cruzadas)
 		}
  	}
  }
 
- SDL_Rect fillRect = {30, 170, 40, 30};
+SDL_Rect fillRect = {30, 170, 40, 30};
 SDL_SetRenderDrawColor( gRenderer, 0xff, 0xcc, 0x66, 0xFF );
 SDL_RenderFillRect( gRenderer, &fillRect );
 
@@ -83,20 +69,20 @@ SDL_Rect fillRect2 = {90, 170, 40, 30};
 SDL_SetRenderDrawColor( gRenderer, 0x6E, 0x2C, 0x67, 0xFF );
 SDL_RenderFillRect( gRenderer, &fillRect2 );
 
- for (i=1; i<= aa.paredes1; i++){
+
+ for (i=1; i<= aa.walles1; i++){
        SDL_Rect fillRect = {30,200+34*i, 40 , 4};
        SDL_SetRenderDrawColor( gRenderer, 0x00, 0x00, 0x00, 0xFF );
        SDL_RenderFillRect( gRenderer, &fillRect );
 
  }
 
- for (i=1; i<= aa.paredes2; i++){
+ for (i=1; i<= aa.walles2; i++){
        SDL_Rect fillRect = {90,200+34*i, 40 , 4};
        SDL_SetRenderDrawColor( gRenderer, 0x00, 0x00, 0x00, 0xFF );
        SDL_RenderFillRect( gRenderer, &fillRect );
 
  }
-
 
 
                 SDL_Rect outlineRect = {192, 95 , 973, 545};

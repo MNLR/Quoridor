@@ -7,21 +7,21 @@
 //    
 //    
 
-int e1_min1(nodo);
-int e1_min2(nodo);
-bool abajo(bool, nodo&);
-bool arriba(bool, nodo&);
-bool derecha(bool, nodo&);
-bool izquierda(bool, nodo&);
-bool paredc(mat2&, nodo&);
-void imprimir(nodo);
+int e1Min1(nodo);
+int e1Min2(nodo);
+bool pawnDown(bool, nodo&);
+bool pawnUp(bool, nodo&);
+bool pawnRight(bool, nodo&);
+bool pawnLeft(bool, nodo&);
+bool wallPlace(mat2&, nodo&);
+void print(nodo);
 
 nodo siguiente2(nodo padre,int sucesor){
- mat2 pared;
+ mat2 wall;
  if (sucesor<=4){
  	switch(sucesor){
 		case 1:
- 			if (abajo(false, padre)){
+ 			if (pawnDown(false, padre)){
 				padre.tablero[2][2]=1;
 			}
 			else{
@@ -29,7 +29,7 @@ nodo siguiente2(nodo padre,int sucesor){
 			}
 			break;
                 case 2:
-			if (arriba(false, padre)){
+			if (pawnUp(false, padre)){
 			        padre.tablero[2][2]=2;
 			}
 			else{
@@ -37,7 +37,7 @@ nodo siguiente2(nodo padre,int sucesor){
 			}
                 	break;
                 case 3:
-                        if (izquierda(false, padre)){
+                        if (pawnLeft(false, padre)){
                                 padre.tablero[2][2]=3;
                         }
 			else{
@@ -46,7 +46,7 @@ nodo siguiente2(nodo padre,int sucesor){
                 	break;
                 case 4:
 
-                        if (derecha(false, padre)){
+                        if (pawnRight(false, padre)){
  	                       padre.tablero[2][2]=4;
         		}
 			else{
@@ -59,26 +59,26 @@ nodo siguiente2(nodo padre,int sucesor){
  }
  else{
         if (sucesor <= 68){   // Paredes horizontales.
-                pared[0][0]= ((sucesor-5)/8+1)*2;
-                pared[0][1]= ((sucesor-5)%8)*2+1;
-                pared[1][0]=pared[0][0];
-                pared[1][1]=pared[0][1]+2;
+                wall[0][0]= ((sucesor-5)/8+1)*2;
+                wall[0][1]= ((sucesor-5)%8)*2+1;
+                wall[1][0]=wall[0][0];
+                wall[1][1]=wall[0][1]+2;
         }
         else {                // Paredes verticales
-                pared[0][0]=((sucesor-69)%8)*2+1+2;
-                pared[0][1]=((sucesor-69)/8+1)*2;
-                pared[1][0]=pared[0][0]-2;
-                pared[1][1]=pared[0][1];
+                wall[0][0]=((sucesor-69)%8)*2+1+2;
+                wall[0][1]=((sucesor-69)/8+1)*2;
+                wall[1][0]=wall[0][0]-2;
+                wall[1][1]=wall[0][1];
 
         }
-        if (paredc(pared, padre)){
+        if (wallPlace(wall, padre)){
                 padre.tablero[2][2]=sucesor;
-		padre.paredes2--;
+		padre.walles2--;
         }
         else{
                 padre.tablero[2][2]=-1;
         }
- //cout << "Pared: "<<"("<<pared[0][0]<<","<<pared[0][1]<<"):("<<pared[1][0]<<","<<pared[1][1]<<") \n"; 
+ //cout << "Pared: "<<"("<<wall[0][0]<<","<<wall[0][1]<<"):("<<wall[1][0]<<","<<wall[1][1]<<") \n"; 
 
  }
 
@@ -86,12 +86,12 @@ nodo siguiente2(nodo padre,int sucesor){
 }
 
 nodo siguiente1(nodo padre, int sucesor){
- mat2 pared;
+ mat2 wall;
 
  if (sucesor<=4){
  	switch(sucesor){
 		case 1:
- 			if (arriba(true, padre)){
+ 			if (pawnUp(true, padre)){
 				padre.tablero[2][2]=1;
 			}
 			else{
@@ -99,7 +99,7 @@ nodo siguiente1(nodo padre, int sucesor){
 			}
 			break;
                 case 2:
-                        if (abajo(true, padre)){
+                        if (pawnDown(true, padre)){
                                 padre.tablero[2][2]=2;
 	                }
 			else{
@@ -107,7 +107,7 @@ nodo siguiente1(nodo padre, int sucesor){
 			}
                 	break;
                 case 3:
-                        if (derecha(true, padre)){
+                        if (pawnRight(true, padre)){
                                 padre.tablero[2][2]=3;
 
 		           }
@@ -117,7 +117,7 @@ nodo siguiente1(nodo padre, int sucesor){
                 	break;
                 case 4:
  
-                        if (izquierda(true, padre)){
+                        if (pawnLeft(true, padre)){
                                 padre.tablero[2][2]=4;
 			 }
                         else{
@@ -130,26 +130,26 @@ nodo siguiente1(nodo padre, int sucesor){
  }
  else{
         if (sucesor <= 68){   // Paredes horizontales.
-                pared[0][0]= ((sucesor-5)/8+1)*2;
-                pared[0][1]= ((sucesor-5)%8)*2+1;
-                pared[1][0]=pared[0][0];
-                pared[1][1]=pared[0][1]+2;
+                wall[0][0]= ((sucesor-5)/8+1)*2;
+                wall[0][1]= ((sucesor-5)%8)*2+1;
+                wall[1][0]=wall[0][0];
+                wall[1][1]=wall[0][1]+2;
         }
         else {                // Paredes verticales
-                pared[0][0]=((sucesor-69)%8)*2+1+2;
-                pared[0][1]=((sucesor-69)/8+1)*2;
-                pared[1][0]=pared[0][0]-2;
-                pared[1][1]=pared[0][1];
+                wall[0][0]=((sucesor-69)%8)*2+1+2;
+                wall[0][1]=((sucesor-69)/8+1)*2;
+                wall[1][0]=wall[0][0]-2;
+                wall[1][1]=wall[0][1];
 
         }
-        if (paredc(pared, padre)){
+        if (wallPlace(wall, padre)){
                 padre.tablero[2][2]=sucesor;
-		padre.paredes1--;
+		padre.walles1--;
         }
         else{
                 padre.tablero[2][2]=-1;
         }
- //cout << "Pared: "<<"("<<pared[0][0]<<","<<pared[0][1]<<"):("<<pared[1][0]<<","<<pared[1][1]<<") \n"; 
+ //cout << "Pared: "<<"("<<wall[0][0]<<","<<wall[0][1]<<"):("<<wall[1][0]<<","<<wall[1][1]<<") \n"; 
 
  }
  return padre;
@@ -188,7 +188,7 @@ int minimax(nodo in, int n, bool mmax, int alfa, int beta){
                 }
         }
         else{
-                return e1_min1(in)-e1_min2(in);
+                return e1Min1(in)-e1Min2(in);
         }
  }
  else{
@@ -197,7 +197,7 @@ int minimax(nodo in, int n, bool mmax, int alfa, int beta){
 		sucesor=1;
 		while(seguir){
 			paso=siguiente2(in, sucesor);
-			if (in.paredes2==0){  // En el nodo padre no quedan paredes => No se exploran subnodos con paredes.
+			if (in.walles2==0){  // En el nodo padre no quedan walles => No se exploran subnodos con walles.
 				co=4;
 			}
 			else {
@@ -231,7 +231,7 @@ int minimax(nodo in, int n, bool mmax, int alfa, int beta){
 		sucesor=1;
 		while(seguir){
                         paso=siguiente1(in, sucesor);
-                        if (in.paredes1==0){  // En el nodo padre no quedan paredes => No se exploran subnodos con paredes.
+                        if (in.walles1==0){  // En el nodo padre no quedan walles => No se exploran subnodos con walles.
                                 co=4;
                         }
                         else {

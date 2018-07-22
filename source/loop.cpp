@@ -1,29 +1,29 @@
 #include <inc.h>
 
-int e1_min1(nodo);
-int e1_min2(nodo);
+int e1Min1(nodo);
+int e1Min2(nodo);
 int minimax(nodo, int, bool, int, int);
 
-void imprimir(nodo);   // Imprime el tablero y datos, por terminal.
-void gimprimir(nodo);  // Tablero gráfico.
-void gimprimiraux(nodo);
+void print(nodo);   // Imprime el tablero y datos, por terminal.
+void gPrint(nodo);  // Tablero gráfico.
+void gPrintAux(nodo);
 
-bool arriba(bool ficha, nodo&);
-bool izquierda(bool ficha, nodo&);
-bool derecha(bool ficha, nodo&);
-bool abajo(bool ficha, nodo&);
+bool pawnUp(bool ficha, nodo&);
+bool pawnLeft(bool ficha, nodo&);
+bool pawnRight(bool ficha, nodo&);
+bool pawnDown(bool ficha, nodo&);
 
-void pared(mat2 &pos, int i, nodo);
-bool paredc(mat2 &pos, nodo &a);
+void wall(mat2 &pos, int i, nodo);
+bool wallPlace(mat2 &pos, nodo &a);
 
 
 
-void ciclo() {
+void loop() {
  int alfa;
  int beta;
 
- bool quit = false;      // flag ciclo principal
- bool colocandopared;	 // flag ciclo pared
+ bool quit = false;      // flag loop principal
+ bool colocandowall;	 // flag loop wall
  SDL_Event e;            // variables manejo de eventos
  SDL_Event t;
 
@@ -49,9 +49,9 @@ void ciclo() {
 		else if( e.type == SDL_KEYDOWN ){	//Presionar tecla
 			switch( e.key.keysym.sym ){
 				case SDLK_p:
-					if (a.paredes1>0){
+					if (a.walles1>0){
 						cout << "p \n";
-						colocandopared=true;
+						colocandowall=true;
 						pos[0][0]=8;
                                         	pos[0][1]=9;
 						pos[1][0]=8;
@@ -59,39 +59,39 @@ void ciclo() {
 						aux=a;
 						aux.tablero[pos[0][0]][pos[0][1]]=2;
 						aux.tablero[pos[1][0]][pos[1][1]]=2;
-						gimprimiraux(aux);
-						if (a.tablero[pos[0][0]][pos[0][1]]==1) {   //Si ya había una pared se revierte a su colocación para imprimirlo.
+						gPrintAux(aux);
+						if (a.tablero[pos[0][0]][pos[0][1]]==1) {   //Si ya había una wall se revierte a su colocación para printlo.
 							aux.tablero[pos[0][0]][pos[0][1]]=1;
 						}
 						else{
 							aux.tablero[pos[0][0]][pos[0][1]]=0;
 						}
-	                                        if (a.tablero[pos[1][0]][pos[1][1]]==1) {   //Si ya había una pared se revierte a su colocación para imprimirlo.
+	                                        if (a.tablero[pos[1][0]][pos[1][1]]==1) {   //Si ya había una wall se revierte a su colocación para printlo.
                                                         aux.tablero[pos[1][0]][pos[1][1]]=1;
                                                 }
                                                 else{
                                                         aux.tablero[pos[1][0]][pos[1][1]]=0;
                                                 }
-						cout << "Pared: "<<"("<<pared[0][0]<<","<<pared[0][1]<<"):("<<pared[1][0]<<","<<pared[1][1]<<") \n"; 
-						while (colocandopared){
+						cout << "Pared: "<<"("<<wall[0][0]<<","<<wall[0][1]<<"):("<<wall[1][0]<<","<<wall[1][1]<<") \n"; 
+						while (colocandowall){
 							while (SDL_PollEvent(&t)){
 								if (t.type == SDL_KEYDOWN){
       									switch (t.key.keysym.sym){
 										case SDLK_ESCAPE:
 											cout << "Colocación cancelada. \n";
 
-                  									colocandopared = false;
-                  									gimprimir(a);
+                  									colocandowall = false;
+                  									gPrint(a);
 											break;
                                                        	                        case SDLK_RETURN:
                                                                                	 	t0=chrono::high_resolution_clock::now();
-											if (paredc(pos,a)){
+											if (wallPlace(pos,a)){
                                                                                 		cout << "colocada. \n";
-												a.paredes1--;
-                                                                                		colocandopared = false;
+												a.walles1--;
+                                                                                		colocandowall = false;
 												apaso=a;
 												auxmod=a;
-                                                                                                gimprimir(a);
+                                                                                                gPrint(a);
 
 												if (mini1==true && a.p1[0]==3){  // Enemigo en posición casi terminal
 													m=2;
@@ -118,29 +118,29 @@ void ciclo() {
                                                 						t1 = chrono::high_resolution_clock::now();
 												T = chrono::duration_cast<chrono::nanoseconds>(t1-t0).count();
  												cout <<"T: "<<T<< "\n";
-												imprimir(a);
-												gimprimir(a);
+												print(a);
+												gPrint(a);
 											}
                                                                                		break;
 										case SDLK_r:
 											cout << "rotar \n";
-											pared(pos, 1, aux);
+											wall(pos, 1, aux);
 											break;
 										case SDLK_UP:
-											cout << "Pared arriba \n";
-											pared(pos, 2, aux);
+											cout << "Pared pawnUp \n";
+											wall(pos, 2, aux);
 											break;
 										case SDLK_DOWN:
-											cout << "Pared abajo \n";
-											pared(pos, 3, aux);
+											cout << "Pared pawnDown \n";
+											wall(pos, 3, aux);
 											break;
 										case SDLK_LEFT:
-											cout << "Pared izquierda \n";
-											pared(pos, 4, aux);
+											cout << "Pared pawnLeft \n";
+											wall(pos, 4, aux);
 											break;
 										case SDLK_RIGHT:
-											cout << "Pared derecha \n";
-											pared(pos, 5, aux);
+											cout << "Pared pawnRight \n";
+											wall(pos, 5, aux);
 											break;
                                                                                 case SDLK_a:
                                                                                         cout << "Actualización SDL \n";
@@ -153,12 +153,12 @@ void ciclo() {
 					}
 					break;
 				case SDLK_UP:
-					if (arriba(true,a)){
+					if (pawnUp(true,a)){
 						cout << "Arriba \n";
 			                        t0=chrono::high_resolution_clock::now();
 						apaso=a;
 						auxmod=a;
-						gimprimir(a);
+						gPrint(a);
 
 						if (mini1==true && a.p1[0]==3){  // Enemigo en posición casi terminal
 							m=2;
@@ -184,17 +184,17 @@ void ciclo() {
 						t1 = chrono::high_resolution_clock::now();
                                                 T = chrono::duration_cast<chrono::nanoseconds>(t1-t0).count();
                                                 cout <<"T: "<<T<< "\n";
-						imprimir(a);
-						gimprimir(a);
+						print(a);
+						gPrint(a);
 					}
 			       		break;
 				case SDLK_DOWN:
-                                        if (abajo(true,a)){
+                                        if (pawnDown(true,a)){
                                                 cout << "Abajo \n";
                                                 t0=chrono::high_resolution_clock::now();
                                                 apaso=a;
 						auxmod=a;
-						gimprimir(a);
+						gPrint(a);
 
 						if (mini1==true && a.p1[0]==3){  // Enemigo en posición casi terminal
 							m=2;
@@ -220,17 +220,17 @@ void ciclo() {
 						t1 = chrono::high_resolution_clock::now();
                                                 T = chrono::duration_cast<chrono::nanoseconds>(t1-t0).count();
                                                 cout <<"T: " <<T<< "\n";
-						imprimir(a);
-						gimprimir(a);
+						print(a);
+						gPrint(a);
                                         }
 					break;
 				case SDLK_LEFT:
-                                        if (izquierda(true,a)){
+                                        if (pawnLeft(true,a)){
                                                 t0=chrono::high_resolution_clock::now();
                                                 cout << "Izquierda \n";
 						apaso=a;
 						auxmod=a;
-						gimprimir(a);
+						gPrint(a);
 
 						if (mini1==true && a.p1[0]==3){  // Enemigo en posición casi terminal
 							m=2;
@@ -256,17 +256,17 @@ void ciclo() {
 						t1 = chrono::high_resolution_clock::now();
                                                 T = chrono::duration_cast<chrono::nanoseconds>(t1-t0).count();
                                                 cout <<"T: "<<T<< "\n";
-						imprimir(a);
-						gimprimir(a);
+						print(a);
+						gPrint(a);
                                                 }
 					break;
 				case SDLK_RIGHT:
-                                        if (derecha(true,a)){
+                                        if (pawnRight(true,a)){
 	                                        cout << "Derecha \n";
                                                 t0=chrono::high_resolution_clock::now();
 						apaso=a;
 						auxmod=a;
-						gimprimir(a);
+						gPrint(a);
 
 						if (mini1==true && a.p1[0]==3){  // Enemigo en posición casi terminal
 							m=2;
@@ -292,8 +292,8 @@ void ciclo() {
 						t1 = chrono::high_resolution_clock::now();
                                                 T = chrono::duration_cast<chrono::nanoseconds>(t1-t0).count();
                                                 cout <<"T: "<<T<< "\n";
-				                imprimir(a);
-						gimprimir(a);
+				                print(a);
+						gPrint(a);
 					}
 					break;
 

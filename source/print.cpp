@@ -1,9 +1,9 @@
 #include <inc.h>
 
-int e1_min1(nodo);
-int e1_min2(nodo);
+int e1Min1(nodo);
+int e1Min2(nodo);
 
-void imprimir(nodo aa){
+void print(nodo aa){
  int i,j;
  for (i=1; i<=17; i++){
 	cout <<" |";
@@ -51,10 +51,10 @@ void imprimir(nodo aa){
  cout << aa.p1[0] << "," << aa.p1[1]<<") \n";
  cout << "Posición 2: (";
  cout << aa.p2[0] << "," << aa.p2[1]<<") \n";
- cout << "Paredes restantes 1: " << aa.paredes1 << "\n";
- cout << "Paredes restantes 2: " << aa.paredes2 << "\n";
- aa.d1=e1_min1(aa);
- aa.d2=e1_min2(aa);
+ cout << "Paredes restantes 1: " << aa.walles1 << "\n";
+ cout << "Paredes restantes 2: " << aa.walles2 << "\n";
+ aa.d1=e1Min1(aa);
+ aa.d2=e1Min2(aa);
  cout << "Distancia 1: " << aa.d1 << "\n";
  cout << "Distancia 2: " << aa.d2 << "\n";
  cout << "Evaluación : " << aa.d1-aa.d2 << "\n";

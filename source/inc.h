@@ -29,8 +29,8 @@ struct nodo {
  array<array<int,19>,19> tablero;	// Estado tablero
  array<int,2> p1,p2;			// Posiciones
  int d1,d2;				// Distancias mínimas
- int paredes1;
- int paredes2;
+ int walles1;
+ int walles2;
 };
 
 extern int m;

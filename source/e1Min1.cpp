@@ -11,13 +11,13 @@ vec2 avance(arr2 cas, arr2 &p2 ,mat19 &lab){
 
 
 
- if (lab[cas[0]-1][cas[1]]==0){ // ¿Sin pared?
+ if (lab[cas[0]-1][cas[1]]==0){ // ¿Sin wall?
          if (lab[p[0]][p[1]]<=1){  // ¿Casilla sin marcar?
  		//if (p==p2){    // ¿Ocupada?
-			//cout << "Encontrada arriba";
+			//cout << "Encontrada pawnUp";
  		//	if (lab[cas[0]][cas[1]]%2==0){		//  ¿Corresponde mover?
 		//		if (lab[p[0]-2][p[1]]==0){	// ¿Casilla sin marcar?
-		//			if (lab[p[0]-1][p[1]]==0){  // No hay pared salto
+		//			if (lab[p[0]-1][p[1]]==0){  // No hay wall salto
 		//				p[0]=p[0]-2;
 		//				posibles.push_back(p);
 		//				lab[p[0]][p[1]]=lab[cas[0]][cas[1]]+1;
@@ -38,13 +38,13 @@ vec2 avance(arr2 cas, arr2 &p2 ,mat19 &lab){
 
 // Abajo
  p[0]=cas[0]+2;
- if (lab[p[0]-1][p[1]]==0){ // ¿Sin pared?
+ if (lab[p[0]-1][p[1]]==0){ // ¿Sin wall?
 	 if (lab[p[0]][p[1]]<=1){  // ¿Casilla sin marcar?
                 //if (p==p2){    // ¿Ocupada?
-		//	//cout <<"Encontrada abajo";
+		//	//cout <<"Encontrada pawnDown";
                  //       if (lab[cas[0]][cas[1]]%2==0){          //  ¿Corresponde mover? 
                    //             if (lab[p[0]+2][p[1]]==0){      // ¿Casilla sin marcar?
-                   //                     if (lab[p[0]+1][p[1]]==0){  // No hay pared salto
+                   //                     if (lab[p[0]+1][p[1]]==0){  // No hay wall salto
                    //                             p[0]=p[0]+2;
                    //                             posibles.push_back(p);
                    //                             lab[p[0]][p[1]]=lab[cas[0]][cas[1]]+1;
@@ -67,13 +67,13 @@ vec2 avance(arr2 cas, arr2 &p2 ,mat19 &lab){
   // Izquierda
  p[0]=cas[0];
  p[1]=cas[1]-2;
- if (lab[p[0]][p[1]+1]==0){ // ¿Sin pared?
+ if (lab[p[0]][p[1]+1]==0){ // ¿Sin wall?
 	 if (lab[p[0]][p[1]]<=1){  // ¿Casilla sin marcar?
                 //if (p==p2){    // ¿Ocupada?
 		//	//cout << "Encontrada izda.";
                  //       if (lab[cas[0]][cas[1]]%2){          //  ¿Corresponde mover?
                   //              if (lab[p[0]][p[1]-2]==0 && mueve1){      // ¿Casilla sin marcar?
-                  //                      if (lab[p[0]][p[1]-1]==0){  // No hay pared salto
+                  //                      if (lab[p[0]][p[1]-1]==0){  // No hay wall salto
                   //                              p[1]=p[1]-2;
                   //                              posibles.push_back(p);
                   //                              lab[p[0]][p[1]]=lab[cas[0]][cas[1]]+1;
@@ -94,14 +94,14 @@ vec2 avance(arr2 cas, arr2 &p2 ,mat19 &lab){
 
 //Derecha
   p[1]=cas[1]+2;
- if (lab[p[0]][p[1]-1]==0){ // ¿Sin pared?
+ if (lab[p[0]][p[1]-1]==0){ // ¿Sin wall?
 	if (lab[p[0]][p[1]]<=1){  // ¿Casilla sin marcar?
 		//if (p==p2){    // ¿Ocupada?
-			//cout<<"Encontrada derecha";
+			//cout<<"Encontrada pawnRight";
 			
         //                if (lab[cas[0]][cas[1]]%2==0){       //  ¿Corresponde mover? y corresponde salto?
          //                       if (lab[p[0]][p[1]+2]==0){      // ¿Casilla sin marcar?
-          //                              if (lab[p[0]][p[1]+1]==0){  // No hay pared salto
+          //                              if (lab[p[0]][p[1]+1]==0){  // No hay wall salto
            //                                     p[1]=p[1]+2;
             //                                    posibles.push_back(p);
              //                                   lab[p[0]][p[1]]=lab[cas[0]][cas[1]]+1;
@@ -124,7 +124,7 @@ vec2 avance(arr2 cas, arr2 &p2 ,mat19 &lab){
  return posibles;
 }
 
-int e1_min1(nodo in){
+int e1Min1(nodo in){
 
  int j,i;
  cola2 c;

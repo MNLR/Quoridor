@@ -41,7 +41,7 @@ vec2 avancep(arr2 &cas, mat19 &lab){
  return posibles;
 }
 
-bool paredp(nodo in, mat2 &pared){
+bool wallp(nodo in, mat2 &wall){
 
  int j;
  cola2 c,d;
@@ -52,8 +52,8 @@ bool paredp(nodo in, mat2 &pared){
  vec2 paso;
  c.push(in.p1);
 
- in.tablero[pared[0][0]][pared[0][1]]=1;
- in.tablero[pared[1][0]][pared[1][1]]=1;
+ in.tablero[wall[0][0]][wall[0][1]]=1;
+ in.tablero[wall[1][0]][wall[1][1]]=1;
  
  mat19 copia=in.tablero;
  in.tablero[in.p2[0]][in.p2[1]]=0;
@@ -98,20 +98,20 @@ bool paredp(nodo in, mat2 &pared){
 }
 
 
-bool paredc(mat2 &pared, nodo &nod){
-  //False indica no se puede colocar pared.
- if (nod.tablero[pared[0][0]][pared[0][1]]==1 || nod.tablero[pared[1][0]][pared[1][1]]==1) {
+bool wallPlace(mat2 &wall, nodo &nod){
+  //False indica no se puede colocar wall.
+ if (nod.tablero[wall[0][0]][wall[0][1]]==1 || nod.tablero[wall[1][0]][wall[1][1]]==1) {
 	return false;
  }
  else {
-	if (pared[0][0]==pared[1][0]){           // Según la rotación se comprueban unas u otras casillas.
-        	if (nod.tablero[pared[0][0]+1][pared[0][1]+1]==1 && nod.tablero[pared[1][0]-1][pared[1][1]-1]==1){  //Pared cruzada
+	if (wall[0][0]==wall[1][0]){           // Según la rotación se comprueban unas u otras casillas.
+        	if (nod.tablero[wall[0][0]+1][wall[0][1]+1]==1 && nod.tablero[wall[1][0]-1][wall[1][1]-1]==1){  //Pared cruzada
         		return false;
 		}
 		else{				// COMPROBACIÖN CAMINO LIBRE
-			if (paredp(nod, pared)==true){
-                		nod.tablero[pared[0][0]][pared[0][1]]=1;
-                		nod.tablero[pared[1][0]][pared[1][1]]=1;
+			if (wallp(nod, wall)==true){
+                		nod.tablero[wall[0][0]][wall[0][1]]=1;
+                		nod.tablero[wall[1][0]][wall[1][1]]=1;
                			return true;
 			}
 			else {
@@ -120,13 +120,13 @@ bool paredc(mat2 &pared, nodo &nod){
 		}
 	}
 	else{
-		if (nod.tablero[pared[0][0]-1][pared[0][1]-1]==1 && nod.tablero[pared[1][0]+1][pared[1][1]+1]==1){
+		if (nod.tablero[wall[0][0]-1][wall[0][1]-1]==1 && nod.tablero[wall[1][0]+1][wall[1][1]+1]==1){
                        	return false;
 		}
                 else{                             // Bloque idéntico   (Comprobación camino libre)
-	                if (paredp(nod, pared)==true){
-        	                nod.tablero[pared[0][0]][pared[0][1]]=1;
-                                nod.tablero[pared[1][0]][pared[1][1]]=1;
+	                if (wallp(nod, wall)==true){
+        	                nod.tablero[wall[0][0]][wall[0][1]]=1;
+                                nod.tablero[wall[1][0]][wall[1][1]]=1;
                                 return true;
                  	}
                         else {
