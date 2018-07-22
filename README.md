@@ -6,7 +6,7 @@ The game uses a very simple 2D graphic interface built using [Simple DirectMedia
 
 The executable provided (Quoridor) is precompiled for Debian based systems.
 
-### Compilation Instructions
+### Compilation and Installation Instructions
 
 SDL2 development libraries and SDL_image are needed to compile the game. You can find the latest versions here: https://www.libsdl.org/download-2.0.php and here: https://www.libsdl.org/projects/SDL_image/.
 For Linux users refer to your distribution maintainer. For instance, for Debian derivatives (in particular Ubuntu) you may use `apt-get`, i.e.
@@ -16,6 +16,8 @@ For Linux users refer to your distribution maintainer. For instance, for Debian 
 The Makefile is ready to be executed using [GNU Make](https://www.gnu.org/software/make/). Quickest way to compile is by downloading the files into a directory, cding into it and typing `make` from the terminal. By default `make` executes the rule `ALL` from the Makefile, which compiles the objects and then links them into the executable. Other rules are an option, but should be used with care, refer to the [GNU Make Manual](https://www.gnu.org/software/make/manual/).
 
 Under Windows systems you may either use your preferred IDE or use the Makefile itself, something you can do, e.g. by employing [GNUWin's Make](https://sourceforge.net/projects/gnuwin32/?source=typ_redirect) or through Visual Studio. Note that it is likely that you will need to modify the Makefile to point to the includes.
+
+To start the game, execute the compiled file `Quoridor` (In bash use `./Quoridor` where this file is located). 
 
 ### How to Play
 
