@@ -2,7 +2,9 @@
 
 Implementation of an AI that plays the game [Quoridor](https://boardgamegeek.com/boardgame/624/quoridor) in  C++. It uses a Minimax with Alpha-Beta Prunning and a Dynamic Programming approach for the heuristic function.
 
-The game uses a very simple 2D graphic interface built using [Simple DirectMedia Layer](https://www.libsdl.org).
+The game uses a very simple 2D graphic interface built using [Simple DirectMedia Layer](https://www.libsdl.org). 
+
+The executable provided (Quoridor) is precompiled for Debian based systems.
 
 ### Compilation Instructions
 
