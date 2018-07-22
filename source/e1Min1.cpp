@@ -41,7 +41,6 @@ vec2 avance(arr2 cas, arr2 &p2 ,mat19 &lab){
         }
  }
 
-}
  return posibles;
 }
 
