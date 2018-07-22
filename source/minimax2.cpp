@@ -1,13 +1,5 @@
 #include <inc.h>
 
-
-
-//
-//
-//    LOS NODOS SE CREAN CORRECTAMENTE. REVISAR DESCARTES (POR INSPECCIÓN PARECEN CORRECTOS) Y VERIFICAR CÓMO DEVOLVER CORRECTAMENTE LA SOLUCIÓN.
-//    NO LO HACEN. REVISAR DEVOLUCIÓN DE NODOS Y MODIFICACIÓN PASO POR VALOR Y REFERENCIA
-//    PARECEN ESTAR ARREGLADOS. MUCHO CUIDADO CON MODIFICAR NODO IN Y CON EL PASO POR REFERENCIA. HAY QUE BUSCAR UNA FORMA DE DEVOLVER LA SOLUCIÓN.
-
 int e1Min1(nodo);
 int e1Min2(nodo);
 bool pawnDown(bool, nodo&);
@@ -59,7 +51,7 @@ nodo siguiente2(nodo padre,int sucesor){
 
 	}
  }
- else{    // Paredes. Función conversora:
+ else{    
   
  }
 

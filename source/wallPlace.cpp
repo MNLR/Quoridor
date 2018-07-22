@@ -4,36 +4,34 @@ vec2 avancep(arr2 &cas, mat19 &lab){
  arr2 p;
  vec2 posibles;
 
-  // Arriba
  p[0]=cas[0]-2;
  p[1]=cas[1];
- if (lab[p[0]][p[1]]==0){  // ¿Casilla ya marcada?
-	if (lab[cas[0]-1][cas[1]]==0){ // ¿Pared?
+ if (lab[p[0]][p[1]]==0){ 
+	if (lab[cas[0]-1][cas[1]]==0){
  		posibles.push_back(p);
 		lab[p[0]][p[1]]=1;
 	}
  }
-  // Abajo
+
  p[0]=cas[0]+2;
- if (lab[p[0]][p[1]]==0){  // ¿Casilla ya marcada?
-        if (lab[cas[0]+1][cas[1]]==0){ // ¿Pared?
+ if (lab[p[0]][p[1]]==0){ 
+        if (lab[cas[0]+1][cas[1]]==0){
                 posibles.push_back(p);
                 lab[p[0]][p[1]]=1;
         }
  }
-  // Izquierda
+
  p[0]=cas[0];
  p[1]=cas[1]-2;
- if (lab[p[0]][p[1]]==0){  // ¿Casilla ya marcada?
-        if (lab[cas[0]][cas[1]-1]==0){ // ¿Pared?
+ if (lab[p[0]][p[1]]==0){ 
+        if (lab[cas[0]][cas[1]-1]==0){ 
                 posibles.push_back(p);
                 lab[p[0]][p[1]]=1;
         }
  }
-  // Derecha
  p[1]=cas[1]+2;
- if (lab[p[0]][p[1]]==0){  // ¿Casilla ya marcada?
-        if (lab[cas[0]][cas[1]+1]==0){ // ¿Pared?
+ if (lab[p[0]][p[1]]==0){ 
+        if (lab[cas[0]][cas[1]+1]==0){ 
                 posibles.push_back(p);
                 lab[p[0]][p[1]]=1;
         }
@@ -99,16 +97,15 @@ bool wallp(nodo in, mat2 &wall){
 
 
 bool wallPlace(mat2 &wall, nodo &nod){
-  //False indica no se puede colocar wall.
  if (nod.tablero[wall[0][0]][wall[0][1]]==1 || nod.tablero[wall[1][0]][wall[1][1]]==1) {
 	return false;
  }
  else {
-	if (wall[0][0]==wall[1][0]){           // Según la rotación se comprueban unas u otras casillas.
-        	if (nod.tablero[wall[0][0]+1][wall[0][1]+1]==1 && nod.tablero[wall[1][0]-1][wall[1][1]-1]==1){  //Pared cruzada
+	if (wall[0][0]==wall[1][0]){          
+        	if (nod.tablero[wall[0][0]+1][wall[0][1]+1]==1 && nod.tablero[wall[1][0]-1][wall[1][1]-1]==1){
         		return false;
 		}
-		else{				// COMPROBACIÖN CAMINO LIBRE
+		else{
 			if (wallp(nod, wall)==true){
                 		nod.tablero[wall[0][0]][wall[0][1]]=1;
                 		nod.tablero[wall[1][0]][wall[1][1]]=1;
@@ -123,7 +120,7 @@ bool wallPlace(mat2 &wall, nodo &nod){
 		if (nod.tablero[wall[0][0]-1][wall[0][1]-1]==1 && nod.tablero[wall[1][0]+1][wall[1][1]+1]==1){
                        	return false;
 		}
-                else{                             // Bloque idéntico   (Comprobación camino libre)
+                else{
 	                if (wallp(nod, wall)==true){
         	                nod.tablero[wall[0][0]][wall[0][1]]=1;
                                 nod.tablero[wall[1][0]][wall[1][1]]=1;

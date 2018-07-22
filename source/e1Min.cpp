@@ -2,26 +2,24 @@ vec2 avance(arr2 cas, arr2 &p2 ,mat19 &lab){
  arr2 p;
  vec2 posibles;
 
-  // Arriba
  p[0]=cas[0]-2;
  p[1]=cas[1];
 
 
 
- if (lab[cas[0]-1][cas[1]]==0){ // ¿Sin wall?
-         if (lab[p[0]][p[1]]<=1){  // ¿Casilla sin marcar?
- 		if (p==p2){    // ¿Ocupada?
-			//cout << "Encontrada pawnUp";
- 			if (lab[cas[0]][cas[1]]%2==0){		//  ¿Corresponde mover?
-				if (lab[p[0]-2][p[1]]==0){	// ¿Casilla sin marcar?
-					if (lab[p[0]-1][p[1]]==0){  // No hay wall salto
+ if (lab[cas[0]-1][cas[1]]==0){
+         if (lab[p[0]][p[1]]<=1){  
+ 		if (p==p2){ 
+			if (lab[cas[0]][cas[1]]%2==0){		
+				if (lab[p[0]-2][p[1]]==0){	
+					if (lab[p[0]-1][p[1]]==0){  
 						p[0]=p[0]-2;
 						posibles.push_back(p);
 						lab[p[0]][p[1]]=lab[cas[0]][cas[1]]+1;
 					}
 				}
 			}
-			else {                    // Ocupada contra movimiento, se ocupa.
+			else {   
 				posibles.push_back(p);
 				lab[p[0]][p[1]]=lab[cas[0]][cas[1]]+1;
 			}
@@ -33,22 +31,22 @@ vec2 avance(arr2 cas, arr2 &p2 ,mat19 &lab){
  }
 }
 
-// Abajo
+
  p[0]=cas[0]+2;
- if (lab[p[0]-1][p[1]]==0){ // ¿Sin wall?
-	 if (lab[p[0]][p[1]]<=1){  // ¿Casilla sin marcar?
-                if (p==p2){    // ¿Ocupada?
-			//cout <<"Encontrada pawnDown";
-                        if (lab[cas[0]][cas[1]]%2==0){          //  ¿Corresponde mover? 
-                                if (lab[p[0]+2][p[1]]==0){      // ¿Casilla sin marcar?
-                                        if (lab[p[0]+1][p[1]]==0){  // No hay wall salto
+ if (lab[p[0]-1][p[1]]==0){ 
+	 if (lab[p[0]][p[1]]<=1){ 
+                if (p==p2){ 
+			
+                        if (lab[cas[0]][cas[1]]%2==0){     
+                                if (lab[p[0]+2][p[1]]==0){     
+                                        if (lab[p[0]+1][p[1]]==0){ 
                                                 p[0]=p[0]+2;
                                                 posibles.push_back(p);
                                                 lab[p[0]][p[1]]=lab[cas[0]][cas[1]]+1;
 					}
                                 }
                         }
-                        else {                    // Ocupada contra movimiento, se ocupa.
+                        else { 
                                 posibles.push_back(p);
                                 lab[p[0]][p[1]]=lab[cas[0]][cas[1]]+1;
 	                }
@@ -60,24 +58,21 @@ vec2 avance(arr2 cas, arr2 &p2 ,mat19 &lab){
  	}
  }
 
-
-  // Izquierda
  p[0]=cas[0];
  p[1]=cas[1]-2;
- if (lab[p[0]][p[1]+1]==0){ // ¿Sin wall?
-	 if (lab[p[0]][p[1]]<=1){  // ¿Casilla sin marcar?
-                if (p==p2){    // ¿Ocupada?
-			//cout << "Encontrada izda.";
-                        if (lab[cas[0]][cas[1]]%2==0){          //  ¿Corresponde mover?
-                                if (lab[p[0]][p[1]-2]==0){      // ¿Casilla sin marcar?
-                                        if (lab[p[0]][p[1]-1]==0){  // No hay wall salto
+ if (lab[p[0]][p[1]+1]==0){
+	 if (lab[p[0]][p[1]]<=1){ 
+                if (p==p2){
+			if (lab[cas[0]][cas[1]]%2==0){
+                                if (lab[p[0]][p[1]-2]==0){
+                                        if (lab[p[0]][p[1]-1]==0){
                                                 p[1]=p[1]-2;
                                                 posibles.push_back(p);
                                                 lab[p[0]][p[1]]=lab[cas[0]][cas[1]]+1;
 			                }
                                 }
                         }
-                        else {                    // Ocupada contra movimiento, se ocupa.
+                        else {
                                 posibles.push_back(p);
                                 lab[p[0]][p[1]]=lab[cas[0]][cas[1]]+1;
  		        }
@@ -89,22 +84,21 @@ vec2 avance(arr2 cas, arr2 &p2 ,mat19 &lab){
  	}
  }
 
-//Derecha
+
   p[1]=cas[1]+2;
- if (lab[p[0]][p[1]-1]==0){ // ¿Sin wall?
-	if (lab[p[0]][p[1]]<=1){  // ¿Casilla sin marcar?
-		if (p==p2){    // ¿Ocupada?
-			//cout<<"Encontrada pawnRight";
-                        if (lab[cas[0]][cas[1]]%2==0){       //  ¿Corresponde mover? 
-                                if (lab[p[0]][p[1]+2]==0){      // ¿Casilla sin marcar?
-                                        if (lab[p[0]][p[1]+1]==0){  // No hay wall salto
+ if (lab[p[0]][p[1]-1]==0){
+	if (lab[p[0]][p[1]]<=1){
+		if (p==p2){
+                        if (lab[cas[0]][cas[1]]%2==0){
+                                if (lab[p[0]][p[1]+2]==0){
+                                        if (lab[p[0]][p[1]+1]==0){
                                                 p[1]=p[1]+2;
                                                 posibles.push_back(p);
                                                 lab[p[0]][p[1]]=lab[cas[0]][cas[1]]+1;
                                         }
                                 }
                         }
-                        else {                    // Ocupada contra movimiento, se ocupa.
+                        else {
                                 posibles.push_back(p);
                                 lab[p[0]][p[1]]=lab[cas[0]][cas[1]]+1;
                         }
@@ -152,25 +146,23 @@ vec2 avance2(arr2 &cas, arr2 &p1 ,mat19 &lab){
  arr2 p;
  vec2 posibles;
 
-
-// Abajo
  p[0]=cas[0]+2;
  p[1]=cas[1];
 
- if (lab[p[0]-1][p[1]]==0){ // ¿Sin wall?
-	 if (lab[p[0]][p[1]]<=1){  // ¿Casilla sin marcar?
-                if (p==p1){    // ¿Ocupada?
-			//cout <<"Encontrada pawnDown";
-                        if (lab[cas[0]][cas[1]]%2==0){          //  ¿Corresponde mover? 
-                                if (lab[p[0]+2][p[1]]==0){      // ¿Casilla sin marcar?
-                                        if (lab[p[0]+1][p[1]]==0){  // No hay wall salto
+ if (lab[p[0]-1][p[1]]==0){ 
+	 if (lab[p[0]][p[1]]<=1){
+                if (p==p1){
+			
+                        if (lab[cas[0]][cas[1]]%2==0){
+                                if (lab[p[0]+2][p[1]]==0){
+                                        if (lab[p[0]+1][p[1]]==0){
                                                 p[0]=p[0]+2;
                                                 posibles.push_back(p);
                                                 lab[p[0]][p[1]]=lab[cas[0]][cas[1]]+1;
                                         }
                                 }
                         }
-                        else {                    // Ocupada contra movimiento, se ocupa.
+                        else {
                                 posibles.push_back(p);
                                 lab[p[0]][p[1]]=lab[cas[0]][cas[1]]+1;
                         }
@@ -182,23 +174,20 @@ vec2 avance2(arr2 &cas, arr2 &p1 ,mat19 &lab){
  	}
  }
 
-  // Arriba
  p[0]=cas[0]-2;
-
- if (lab[cas[0]-1][cas[1]]==0){ // ¿Sin wall?
-         if (lab[p[0]][p[1]]<=1){  // ¿Casilla sin marcar?
-                if (p==p1){    // ¿Ocupada?
-                        //cout << "Encontrada pawnUp";
-                        if (lab[cas[0]][cas[1]]%2==0){          //  ¿Corresponde mover?
-                                if (lab[p[0]-2][p[1]]==0){      // ¿Casilla sin marcar?
-                                        if (lab[p[0]-1][p[1]]==0){  // No hay wall salto
+ if (lab[cas[0]-1][cas[1]]==0){
+         if (lab[p[0]][p[1]]<=1){ 
+                if (p==p1){ 
+                        if (lab[cas[0]][cas[1]]%2==0){
+                                if (lab[p[0]-2][p[1]]==0){ 
+                                        if (lab[p[0]-1][p[1]]==0){
                                                 p[0]=p[0]-2;
                                                 posibles.push_back(p);
                                                 lab[p[0]][p[1]]=lab[cas[0]][cas[1]]+1;
                                         }
                                 }
                         }
-                        else {                    // Ocupada contra movimiento, se ocupa.
+                        else {                   
                                 posibles.push_back(p);
                                 lab[p[0]][p[1]]=lab[cas[0]][cas[1]]+1;
                         }
@@ -210,24 +199,21 @@ vec2 avance2(arr2 &cas, arr2 &p1 ,mat19 &lab){
  }
 }
 
-
-  // Izquierda
  p[0]=cas[0];
  p[1]=cas[1]-2;
- if (lab[p[0]][p[1]+1]==0){ // ¿Sin wall?
-	 if (lab[p[0]][p[1]]<=1){  // ¿Casilla sin marcar?
-                if (p==p1){    // ¿Ocupada?
-			//cout << "Encontrada izda.";
-                        if (lab[cas[0]][cas[1]]%2==0){          //  ¿Corresponde mover?
-                                if (lab[p[0]][p[1]-2]==0){      // ¿Casilla sin marcar?
-                                        if (lab[p[0]][p[1]-1]==0){  // No hay wall salto
+ if (lab[p[0]][p[1]+1]==0){
+	 if (lab[p[0]][p[1]]<=1){
+                if (p==p1){
+                        if (lab[cas[0]][cas[1]]%2==0){ 
+                                if (lab[p[0]][p[1]-2]==0){
+                                        if (lab[p[0]][p[1]-1]==0){
                                                 p[1]=p[1]-2;
                                                 posibles.push_back(p);
                                                 lab[p[0]][p[1]]=lab[cas[0]][cas[1]]+1;
                                         }
                                 }
                         }
-                        else {                    // Ocupada contra movimiento, se ocupa.
+                        else {
                                 posibles.push_back(p);
                                 lab[p[0]][p[1]]=lab[cas[0]][cas[1]]+1;
                         }
@@ -239,22 +225,21 @@ vec2 avance2(arr2 &cas, arr2 &p1 ,mat19 &lab){
  	}
  }
 
-//Derecha
-  p[1]=cas[1]+2;
- if (lab[p[0]][p[1]-1]==0){ // ¿Sin wall?
-	if (lab[p[0]][p[1]]<=1){  // ¿Casilla sin marcar?
-		if (p==p1){    // ¿Ocupada?
-			//cout<<"Encontrada pawnRight";
-                        if (lab[cas[0]][cas[1]]%2==0){       //  ¿Corresponde mover? 
-                                if (lab[p[0]][p[1]+2]==0){      // ¿Casilla sin marcar?
-                                        if (lab[p[0]][p[1]+1]==0){  // No hay wall salto
+
+ p[1]=cas[1]+2;
+ if (lab[p[0]][p[1]-1]==0){ 
+	if (lab[p[0]][p[1]]<=1){ 
+		if (p==p1){
+                        if (lab[cas[0]][cas[1]]%2==0){
+                                if (lab[p[0]][p[1]+2]==0){
+                                        if (lab[p[0]][p[1]+1]==0){
                                                 p[1]=p[1]+2;
                                                 posibles.push_back(p);
                                                 lab[p[0]][p[1]]=lab[cas[0]][cas[1]]+1;
                                         }
                                 }
                         }
-                        else {                    // Ocupada contra movimiento, se ocupa.
+                        else { 
                                 posibles.push_back(p);
                                 lab[p[0]][p[1]]=lab[cas[0]][cas[1]]+1;
                         }
@@ -284,15 +269,7 @@ int e1Min2(nodo in){
         paso=avance2(c.front(), in.p1, in.tablero);
         for (j=1;j<=paso.size();j++){
                 c.push(paso[j-1]);
-               //cout<<"("<<paso[j-1][0]<<","<<paso[j-1][1]<<")";
         }
-      //for (i=0; i<=18; i++){
-      //        for(j=0; j<=18; j++){
-      //                cout << in.tablero[i][j] << " ";
-      //        }
-      //        cout << "\n";
-      //}
-
         if (c.front()[0]==17){
                 in.d2=in.tablero[c.front()[0]][c.front()[1]]-2;
                 buscar=false;
