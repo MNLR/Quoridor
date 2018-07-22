@@ -61,7 +61,7 @@ int main(int argc, char* args[]){
  a.tablero[a.p2[0]][a.p2[1]]=1;
 
  if( !init() ){
- 	cout << "Failed to initialize!\n" ;
+ 	cout << "Failed to initialize SDL!\n" ;
  }
  else{
 	if(!loadMedia()){

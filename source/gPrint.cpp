@@ -10,18 +10,18 @@ void gPrint(nodo aa){
 	if (i%2==1){
 		for (j=1; j<=17 ; j++){
 			if (j%2==1){
-				if (aa.p1[0]==i && aa.p1[1]==j){  // FICHA 1
+				if (aa.p1[0]==i && aa.p1[1]==j){  
 					SDL_Rect fillRect = {(50+SCREEN_WIDTH/11)+(SCREEN_WIDTH/11)*(j-1)/2+34, (SCREEN_HEIGHT/11)+(SCREEN_HEIGHT/11)*(i-1)/2+34, SCREEN_WIDTH/12, SCREEN_HEIGHT/12};
                                 	SDL_SetRenderDrawColor( gRenderer, 0xff, 0xcc, 0x66, 0xFF );
                 	        	SDL_RenderFillRect( gRenderer, &fillRect );
 				}
 				else{
-	                       		if (aa.p2[0]==i && aa.p2[1]==j){   // FICHA 2
+	                       		if (aa.p2[0]==i && aa.p2[1]==j){
 	                                	SDL_Rect fillRect = {(50+SCREEN_WIDTH/11)+(SCREEN_WIDTH/11)*(j-1)/2+34, (SCREEN_HEIGHT/11)+(SCREEN_HEIGHT/11)*(i-1)/2+34, SCREEN_WIDTH/12, SCREEN_HEIGHT/12};
                                 		SDL_SetRenderDrawColor( gRenderer, 0x6E, 0x2C, 0x67, 0xFF );
                 	               		SDL_RenderFillRect( gRenderer, &fillRect );
                         		}
-					else{				    // CASILLA VACÍA
+					else{		
 						SDL_Rect fillRect = {(50+SCREEN_WIDTH/11)+(SCREEN_WIDTH/11)*(j-1)/2+34, (SCREEN_HEIGHT/11)+(SCREEN_HEIGHT/11)*(i-1)/2+34, SCREEN_WIDTH/12, SCREEN_HEIGHT/12};
                                 		SDL_SetRenderDrawColor( gRenderer, 0x8B, 0x45, 0x13, 0xFF);
                 	               		SDL_RenderFillRect( gRenderer, &fillRect );
@@ -29,12 +29,12 @@ void gPrint(nodo aa){
 				}
 			}
 			else{
-				if (aa.tablero[i][j]==true){		// HUECO PARED VERTICAL OCUPADO
+				if (aa.tablero[i][j]==true){		
 					SDL_Rect fillRect = {(50+SCREEN_WIDTH/11)+(SCREEN_WIDTH/11)*j/2+25, (SCREEN_HEIGHT/11)+(SCREEN_HEIGHT/11)*(i-1)/2+34, 17, SCREEN_HEIGHT/12};
                         		SDL_SetRenderDrawColor( gRenderer, 0x00, 0x00, 0x00, 0xFF );
                 	        	SDL_RenderFillRect( gRenderer, &fillRect );
 				}
-				else{					// HUECO PARED VERTICAL NO OCUPADO
+				else{				
 					SDL_Rect fillRect = {(50+SCREEN_WIDTH/11)+(SCREEN_WIDTH/11)*j/2+25, (SCREEN_HEIGHT/11)+(SCREEN_HEIGHT/11)*(i-1)/2+34, 17, SCREEN_HEIGHT/12};
                        		        SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
                                 	SDL_RenderFillRect( gRenderer, &fillRect );
@@ -45,18 +45,13 @@ void gPrint(nodo aa){
 	else{
 		for (j=1; j<=17 ; j++){
 			if(j%2==1){
-                        	if (aa.tablero[i][j]==true){	//HUECO PARED HORIZONTAL OCUPADO
+                        	if (aa.tablero[i][j]==true){
 		               		  SDL_Rect fillRect = {(50+SCREEN_WIDTH/11)+(SCREEN_WIDTH/11)*(j-1)/2+34, (SCREEN_HEIGHT/11)+(SCREEN_HEIGHT/11)*(i-1)/2+60, SCREEN_WIDTH/12 , 6};
                                           SDL_SetRenderDrawColor( gRenderer, 0x00, 0x00, 0x00, 0xFF );
                                           SDL_RenderFillRect( gRenderer, &fillRect );
 				}
-				else{				// HUECO PARED HORIZONTAL NO OCUPADO
-					//SDL_Rect fillRect = {(50+SCREEN_WIDTH/11)+(SCREEN_WIDTH/11)*(j-1)/2+50,( SCREEN_HEIGHT/11)+ (SCREEN_HEIGHT/11)*(i-1)+20, SCREEN_HEIGHT/12, 6};
-                	               	//SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
-                                	//SDL_RenderFillRect( gRenderer, &fillRect );
 
-				}
-			}		// Si no en blanco (Modeliza agujero entre walles cruzadas)
+			}		
 		}
  	}
  }
@@ -88,7 +83,7 @@ SDL_RenderFillRect( gRenderer, &fillRect2 );
                 SDL_Rect outlineRect = {192, 95 , 973, 545};
                 SDL_SetRenderDrawColor( gRenderer, 0x00, 0x00, 0x00, 0xFF );
                 SDL_RenderDrawRect( gRenderer, &outlineRect );
-		// Actualizar
+
                 SDL_RenderPresent( gRenderer );
 
 }

@@ -5,8 +5,6 @@ vec2 avance2(arr2 &cas, arr2 &p1 ,mat19 &lab){
  arr2 p;
  vec2 posibles;
 
-
-
  p[0]=cas[0]+2;
  p[1]=cas[1];
 

@@ -1,5 +1,8 @@
 #include <inc.h>
 
+// This is the function where the magic really happens. 
+// It makes the machine pseudointelligent
+
 int e1Min1(nodo);
 int e1Min2(nodo);
 bool pawnDown(bool, nodo&);
@@ -51,13 +54,13 @@ nodo siguiente2(nodo padre,int sucesor){
 	}
  }
  else{
-        if (sucesor <= 68){   // Paredes horizontales.
+        if (sucesor <= 68){   // Horizontal Walls
                 wall[0][0]= ((sucesor-5)/8+1)*2;
                 wall[0][1]= ((sucesor-5)%8)*2+1;
                 wall[1][0]=wall[0][0];
                 wall[1][1]=wall[0][1]+2;
         }
-        else {                // Paredes verticales
+        else {                // Vertical Walls
                 wall[0][0]=((sucesor-69)%8)*2+1+2;
                 wall[0][1]=((sucesor-69)/8+1)*2;
                 wall[1][0]=wall[0][0]-2;
@@ -71,8 +74,6 @@ nodo siguiente2(nodo padre,int sucesor){
         else{
                 padre.tablero[2][2]=-1;
         }
- //cout << "Pared: "<<"("<<wall[0][0]<<","<<wall[0][1]<<"):("<<wall[1][0]<<","<<wall[1][1]<<") \n"; 
-
  }
 
  return padre;
@@ -122,13 +123,13 @@ nodo siguiente1(nodo padre, int sucesor){
 	}
  }
  else{
-        if (sucesor <= 68){   // Paredes horizontales.
+        if (sucesor <= 68){ 
                 wall[0][0]= ((sucesor-5)/8+1)*2;
                 wall[0][1]= ((sucesor-5)%8)*2+1;
                 wall[1][0]=wall[0][0];
                 wall[1][1]=wall[0][1]+2;
         }
-        else {                // Paredes verticales
+        else {            
                 wall[0][0]=((sucesor-69)%8)*2+1+2;
                 wall[0][1]=((sucesor-69)/8+1)*2;
                 wall[1][0]=wall[0][0]-2;
@@ -142,7 +143,6 @@ nodo siguiente1(nodo padre, int sucesor){
         else{
                 padre.tablero[2][2]=-1;
         }
- //cout << "Pared: "<<"("<<wall[0][0]<<","<<wall[0][1]<<"):("<<wall[1][0]<<","<<wall[1][1]<<") \n"; 
 
  }
  return padre;
@@ -190,13 +190,13 @@ int minimax(nodo in, int n, bool mmax, int alfa, int beta){
 		sucesor=1;
 		while(seguir){
 			paso=siguiente2(in, sucesor);
-			if (in.walles2==0){  // En el nodo padre no quedan walles => No se exploran subnodos con walles.
+			if (in.walles2==0){ // No walls left, minimax tree has breadth 4
 				co=4;
 			}
 			else {
 				co=132;
 			}
-			if (paso.tablero[2][2]!=-1){   // Si no se descarta el nodo.
+			if (paso.tablero[2][2]!=-1){  
 				eval=minimax(paso, n-1, false, alfa, beta);
 				if (n==m) {
 					if (eval>alfa){
@@ -204,18 +204,16 @@ int minimax(nodo in, int n, bool mmax, int alfa, int beta){
 					}
 				}
 	        	        alfa=max(alfa, eval);
-	        	        //cout << "Movimiento: " << paso.tablero[2][2] <<" con alfa: " << alfa << "\n";
                         	if (beta<=alfa || sucesor==co){ 
                                 	seguir=false;
                         	}
 			}
 			else {
-				if (sucesor==co){  // También debe comprobarse fuera. Por si el nodo es descartado.
+				if (sucesor==co){
 					seguir=false;
 				}
 			}
 			sucesor++;
-			//cout << "("<<sucesor<<")";
 		}
 		return alfa;
  	}
@@ -224,23 +222,21 @@ int minimax(nodo in, int n, bool mmax, int alfa, int beta){
 		sucesor=1;
 		while(seguir){
                         paso=siguiente1(in, sucesor);
-                        if (in.walles1==0){  // En el nodo padre no quedan walles => No se exploran subnodos con walles.
+                        if (in.walles1==0){
                                 co=4;
                         }
                         else {
                                 co=132;
                         }
-			if (paso.tablero[2][2]!=-1){   // Si no se descarta el nodo.
+			if (paso.tablero[2][2]!=-1){ 
 				eval=minimax(paso, n-1, true, alfa, beta);
                                 beta=min(beta, eval);
-				//cout << "Movimiento: " << paso.tablero[2][2] <<" con beta: " << beta << "\n";
-
                                 if (beta<=alfa || sucesor==co){
                                         seguir=false;
                                 }
                         }
-			else {      // Para evitar doble comprobación
-                        	if (sucesor==co){  // También debe comprobarse fuera. Por si el nodo es descartado.
+			else {
+                        	if (sucesor==co){
                                 	seguir=false;
 				}
 			}

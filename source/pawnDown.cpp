@@ -54,10 +54,3 @@ bool pawnDown(bool ficha, nodo &in){
 
  }
 }
-
-
-
-
-
-
-

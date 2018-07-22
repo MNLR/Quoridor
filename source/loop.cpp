@@ -4,7 +4,7 @@ int minimax(nodo, int, bool, int, int);
 
 void print(nodo);   // Prints the board in terminal
 void gPrint(nodo);  // Graphic board
-void gPrintAux(nodo);
+void gPrintAux(nodo); // Graphic dummy board for aux mode
 
 bool pawnUp(bool ficha, nodo&);
 bool pawnLeft(bool ficha, nodo&);
