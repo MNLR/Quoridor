@@ -17,7 +17,7 @@ The Makefile is ready to be executed using [GNU Make](https://www.gnu.org/softwa
 
 Under Windows systems you may either use your preferred IDE or use the Makefile itself, something you can do, e.g. by employing [GNUWin's Make](https://sourceforge.net/projects/gnuwin32/?source=typ_redirect) or through Visual Studio. Note that it is likely that you will need to modify the Makefile to point to the includes.
 
-To start the game, execute the compiled file `Quoridor` (In bash use `./Quoridor` where this file is located). 
+To **start the game**, execute the compiled file `Quoridor` (In bash use `./Quoridor` where this file is located i.e. in the main directory). 
 
 ### How to Play
 
