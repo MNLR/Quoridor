@@ -47,16 +47,16 @@ void print(nodo aa){
  	cout << "\n";
 	}
  }
- cout << "Posición 1: (";
+ cout << "Position 1: (";
  cout << aa.p1[0] << "," << aa.p1[1]<<") \n";
- cout << "Posición 2: (";
+ cout << "Position 2: (";
  cout << aa.p2[0] << "," << aa.p2[1]<<") \n";
- cout << "Paredes restantes 1: " << aa.walles1 << "\n";
- cout << "Paredes restantes 2: " << aa.walles2 << "\n";
+ cout << "Walls left 1: " << aa.walles1 << "\n";
+ cout << "Walls left 2: " << aa.walles2 << "\n";
  aa.d1=e1Min1(aa);
  aa.d2=e1Min2(aa);
- cout << "Distancia 1: " << aa.d1 << "\n";
- cout << "Distancia 2: " << aa.d2 << "\n";
- cout << "Evaluación : " << aa.d1-aa.d2 << "\n";
- cout << "Último movimiento máquina: " << aa.tablero[2][2] <<"\n";
+ cout << "Distance 1: " << aa.d1 << "\n";
+ cout << "Distance 2: " << aa.d2 << "\n";
+ cout << "Heuristic Measure : " << aa.d1-aa.d2 << "\n";
+ cout << "Last Machine Move: " << aa.tablero[2][2] <<"\n";
 }

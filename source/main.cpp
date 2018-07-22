@@ -1,52 +1,46 @@
-//  Mikel N. Legasa Ríos.
+//  Mikel N. Legasa
 
 
 #include <inc.h>
 
-// Dimensiones ventana principal - extern
+// Main window dimensions extern
 const int SCREEN_WIDTH = 1200;
 const int SCREEN_HEIGHT = 680;
 
-// Funciones auxiliares
-bool init();					// Inicia SDL y crea la ventana
-bool loadMedia();				// Carga media
-void close();					// Libera la memoria y apaga SDL
-SDL_Texture* loadTexture( std::string path );   // Carga imagen como textura
-SDL_Window* gWindow = NULL;			// Ventana a la que se renderizará
-SDL_Renderer* gRenderer = NULL;			// Renderizador de ventana
+// Aux functions
+bool init();					// Starts SDL and loads the window
+bool loadMedia();
+void close();					// Shuts down SDL
+SDL_Texture* loadTexture( std::string path );
+SDL_Window* gWindow = NULL;
+SDL_Renderer* gRenderer = NULL;			// Renderer
 void loop();
 
 void print(nodo);
 void gPrint(nodo);
 
 int m;
-nodo a; // Nodo principal. Estado actual del tablero.
-bool modificado;    // Variable de control minimax modificado.
-bool mini1;         // Corrige funcionamiento 1 nivel
+nodo a; 		// Main node. Board status.
+bool mini1;             // Fixes a bug when minimax uses depth = 1 (dificulty level)
 
 int main(int argc, char* args[]){
  short i,j, cosa;
  char op1, op2;
- modificado=false;
  mini1=false;
- cout<< "¿Dificultad? 1: Fácil 2: Medio 3: Difícil \n";
+ cout<< "Input dificulty level \n 1: Easy 2: Medium 3: Hard 4+: Harder (Experimental) 8+: Nightmare (UberExperimental) \n";
  cin >> m;
  if (m==1){
 	mini1=true;
  }
- cout << "¿Minimax (n) o Minimax modificado (m)? \n";
- cin >> op1;
- if (op1=='m'){
-	modificado=true;
- }
- // Inicialización primer nodo.
+
+ // First node
  for (i=0; i<=18; i++){
 	for (j=0; j<=18 ; j++){
 		a.tablero[i][j]=0;
 	}
  }
 
- //Límites del tablero
+ // Board limits
  for (i=0; i<=18; i++) {
 	a.tablero[0][i]=1;
 	a.tablero[i][0]=1;
@@ -74,14 +68,12 @@ int main(int argc, char* args[]){
 		cout << "Failed to load media!\n";
 	}
 	else{
-		bool quit = false;	// flag loop principal
-		SDL_Event e;   		// variables manejo de eventos
+		bool quit = false;
+		SDL_Event e;
                 SDL_Event t;
 		gPrint(a);
-		
 		loop();
-	// Liberar recursos y cerrar SDL.
-	close();
+	close(); // Close SDL
 	return 0;
 	}
  }
