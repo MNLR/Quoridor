@@ -68,7 +68,7 @@ Controls:
    
    Note that if you try to place a wall where you would block every path to your enemy's or your own goal, pressing `Enter` won't work, and that if you try to place a wall and there are none left `p` won't work either.
 
-* Press `F5` to update the screen if it gets blurred out or are any graphic artifact should should appear.
+* Press `F5` to update the screen if it gets blurred out or any graphic artifact should should appear.
 
 
 ### A Note on Difficulty
