@@ -1,11 +1,11 @@
 ###########   © Mikel N. Legasa
 ### Makefile for Quoridor
 
-# This is a wrapper of the Makefile located in source/
+# This Makefile wraps the Makefile located in source/
 
 all:
-	cd source/ && make quoridor && mv Quoridor ..
+	cd source/ && make quoridor && cp Quoridor ..
 clean:
 	cd source/ && make clean
 cleanall:
-	cd source/ && make clean && rm Quoridor
+	cd source/ && make cleanall && cd .. && rm -f Quoridor
