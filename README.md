@@ -6,7 +6,7 @@ The game uses a very simple 2D graphic interface built using [Simple DirectMedia
 
 The executable provided (Quoridor) is precompiled for Debian based systems. SDL2 can be installed through the command
 
-`sudo apt-get install libsdl2-2.0-0 libdsl2-image-2.0.0`
+`sudo apt-get install libsdl2-2.0-0 libsdl2-image-2.0.0`
 
 ### Compilation and Installation Instructions
 
