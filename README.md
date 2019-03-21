@@ -4,14 +4,16 @@ Implementation of an AI that plays the game [Quoridor](https://boardgamegeek.com
 
 The game uses a very simple 2D graphic interface built using [Simple DirectMedia Layer](https://www.libsdl.org). 
 
-The executable provided (Quoridor) is precompiled for Debian based systems.
+The executable provided (Quoridor) is precompiled for Debian based systems. SDL2 can be installed through the command
+
+`sudo apt-get install libsdl2-2.0-0 libdsl2-image-2.0.0`
 
 ### Compilation and Installation Instructions
 
 SDL2 development libraries and SDL_image are needed to compile the game. You can find the latest versions here: https://www.libsdl.org/download-2.0.php and here: https://www.libsdl.org/projects/SDL_image/.
 For Linux users refer to your distribution maintainer. For instance, for Debian derivatives (in particular Ubuntu) you may use `apt-get`, i.e.
 
-`sudo apt-get install libsdl2-dev libdsl2-image-dev`
+`sudo apt-get install libsdl2-dev libsdl2-image-dev`
 
 The Makefile is ready to be executed using [GNU Make](https://www.gnu.org/software/make/). Quickest way to compile is by downloading the files into a directory, cding into it and typing `make` from the terminal. By default `make` executes the rule `ALL` from the Makefile, which compiles the objects and then links them into the executable. Other rules are an option, but should be used with care, refer to the [GNU Make Manual](https://www.gnu.org/software/make/manual/).
 
